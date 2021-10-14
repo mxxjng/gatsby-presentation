@@ -14,7 +14,7 @@ module.exports = {
         },
         colors: {
             primary: '#663399',
-            bg: '#fff',
+            bg: '#ECECEC',
             bgHighlight: '#24252F',
             hrColor: '#353745',
             colorChat: '#393B4B',

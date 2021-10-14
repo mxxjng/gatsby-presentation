@@ -6,7 +6,6 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 const IndexPage: React.FC = props => {
-    console.log(props);
     return (
         <Layout>
             <SEO title="Home" />
@@ -20,6 +19,7 @@ const IndexPage: React.FC = props => {
                     magni quo omnis numquam. Alias dolorum adipisci nam.
                     Repellendus doloremque obcaecati voluptatem dolorem!
                 </p>
+                <Link to="/blog">To Markdown Blogs</Link>
             </div>
         </Layout>
     );
@@ -27,14 +27,10 @@ const IndexPage: React.FC = props => {
 
 export default IndexPage;
 
+/*
 export const query = graphql`
     query MyQuery {
-        allMarkdownRemark {
-            edges {
-                node {
-                    html
-                }
-            }
-        }
+
     }
 `;
+*/

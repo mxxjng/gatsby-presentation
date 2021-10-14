@@ -1,12 +1,36 @@
-exports.onCreatePage = async ({ page, actions }) => {
+const path = require('path');
+
+exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions;
 
-    // page.matchPath is a special key that's used for matching pages
-    // only on the client.
-    if (page.path.match(/^\/data/)) {
-        page.matchPath = '/data/*';
+    return new Promise((resolve, reject) => {
+        graphql(`
+            {
+                allMarkdownRemark {
+                    edges {
+                        node {
+                            frontmatter {
+                                slug
+                            }
+                        }
+                    }
+                }
+            }
+        `)
+            .then(result => {
+                const { edges } = result.data.allMarkdownRemark;
 
-        // Update the page.
-        createPage(page);
-    }
+                edges.forEach(({ node }) => {
+                    createPage({
+                        path: node.frontmatter.slug,
+                        component: path.resolve('./src/templates/BlogPage.tsx'),
+                        context: {
+                            slug: node.frontmatter.slug,
+                        },
+                    });
+                });
+                resolve();
+            })
+            .catch(error => reject(error));
+    });
 };
