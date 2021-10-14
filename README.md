@@ -1,3 +1,3 @@
-## Gatsby Typescript starter
+## Gatsby Presentation
 
-A Gatsby Typescript starter with eslint and styled-components
+this is a project for presentations
